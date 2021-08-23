@@ -1,5 +1,6 @@
 const createApp = require("./app");
 const { config } = require("./config");
+require("./db");
 
 const app = createApp();
 app.listen(config.port, (error) => {
