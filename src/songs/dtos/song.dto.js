@@ -9,7 +9,7 @@ const songDto = [
     .withMessage("Artist is required"),
   // duration
   body("duration")
-    .isInt({ min: 0 })
+    .isFloat({ min: 0 })
     .withMessage("The song must have a valid duration time"),
 ];
 

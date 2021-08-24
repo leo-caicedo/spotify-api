@@ -1,5 +1,6 @@
 // models
 const Album = require("../models/Album");
+const Artist = require("../models/Artist");
 
 class AlbumServices {
   // list albums
@@ -32,11 +33,21 @@ class AlbumServices {
 
   // create album
   async createAlbum(req, res, next) {
-    const { body: album } = req;
+    const { album, artist, songs } = req.body;
 
     try {
-      const albumCreated = new Album(album);
+      const artistFound = await Artist.findById(artist);
+
+      const albumCreated = new Album({
+        album,
+        artist: artistFound._id,
+        songs,
+      });
       await albumCreated.save();
+
+      artistFound.albums = artistFound.albums.concat(albumCreated._id);
+      await artistFound.save();
+
       res.status(201).json(albumCreated);
     } catch (err) {
       next(err);
