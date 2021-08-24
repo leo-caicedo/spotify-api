@@ -5,6 +5,7 @@ const cors = require("cors");
 // required routes
 const artistsRoutes = require("./songs/routes/artists.routes");
 const albumsRouter = require("./songs/routes/albums.routes");
+const gendersRoutes = require("./songs/routes/genders.routes");
 
 const createApp = () => {
   const app = express();
@@ -17,6 +18,7 @@ const createApp = () => {
   // routes
   app.use("/api/artists", artistsRoutes);
   app.use("/api/albums", albumsRouter);
+  app.use("/api/genders", gendersRoutes);
 
   return app;
 };
