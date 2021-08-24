@@ -16,7 +16,7 @@ class ArtistServices {
   }
 
   // get artist
-  async getArtist(req, res) {
+  async getArtist(req, res, next) {
     const { id } = req.params;
 
     try {
@@ -25,6 +25,19 @@ class ArtistServices {
         .populate("songs")
         .exec();
       res.json(artist);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  // create artist
+  async createArtist(req, res, next) {
+    const { body: artist } = req;
+
+    try {
+      const artistCreated = new Artist(artist);
+      await artistCreated.save();
+      res.status(201).json(artistCreated);
     } catch (err) {
       next(err);
     }
