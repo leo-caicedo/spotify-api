@@ -1,5 +1,8 @@
 // models
 const Song = require("../models/Song");
+const Artist = require("../models/Artist");
+const Album = require("../models/Album");
+const Gender = require("../models/Gender");
 
 class SongServices {
   // list songs
@@ -37,11 +40,31 @@ class SongServices {
 
   // create song
   async createSong(req, res, next) {
-    const { body: song } = req;
+    const { title, artist, duration, album, gender } = req.body;
 
     try {
-      const songCreated = new Song(song);
+      const artistFound = await Artist.findById(artist);
+      const albumFound = await Album.findById(album);
+      const genderFound = await Gender.findById(gender);
+
+      const songCreated = new Song({
+        title,
+        artist: artistFound._id,
+        duration,
+        album: albumFound._id,
+        gender: genderFound._id,
+      });
       await songCreated.save();
+
+      artistFound.songs = artistFound.songs.concat(songCreated._id);
+      await artistFound.save();
+
+      albumFound.songs = albumFound.songs.concat(songCreated._id);
+      await albumFound.save();
+
+      genderFound.songs = genderFound.songs.concat(songCreated._id);
+      await genderFound.save();
+
       res.status(201).json(songCreated);
     } catch (err) {
       next(err);
