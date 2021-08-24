@@ -55,6 +55,18 @@ class ArtistServices {
       next(err);
     }
   }
+
+  // delete artist
+  async deleteArtist(req, res, next) {
+    const { id } = req.params;
+
+    try {
+      await Artist.findByIdAndDelete(id);
+      res.status(204).end();
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = ArtistServices;
