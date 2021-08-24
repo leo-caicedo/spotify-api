@@ -20,10 +20,12 @@ const songSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "Album",
     },
-    gender: {
-      type: Schema.Types.ObjectId,
-      ref: "Gender",
-    },
+    gender: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Gender",
+      },
+    ],
   },
   {
     timestamps: true,
