@@ -3,7 +3,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 
 // required routes
-const artistRoutes = require("./songs/routes/artists.routes");
+const artistsRoutes = require("./songs/routes/artists.routes");
+const albumsRouter = require("./songs/routes/albums.routes");
 
 const createApp = () => {
   const app = express();
@@ -14,7 +15,8 @@ const createApp = () => {
   app.use(cors());
 
   // routes
-  app.use("/api/artists", artistRoutes);
+  app.use("/api/artists", artistsRoutes);
+  app.use("/api/albums", albumsRouter);
 
   return app;
 };
