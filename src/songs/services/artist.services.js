@@ -42,6 +42,19 @@ class ArtistServices {
       next(err);
     }
   }
+
+  // update artist
+  async updateArtist(req, res, next) {
+    const { id } = req.params;
+    const { body: artist } = req;
+
+    try {
+      const artistUpdated = await Artist.findByIdAndUpdate(id, artist);
+      res.json(artistUpdated);
+    } catch (err) {
+      next(err);
+    }
+  }
 }
 
 module.exports = ArtistServices;
