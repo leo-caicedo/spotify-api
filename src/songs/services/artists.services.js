@@ -7,7 +7,7 @@ class ArtistServices {
     try {
       const artists = await Artist.find({})
         .populate("albums", { _id: 0, album: 1 })
-        .populate("songs", { _id: 0, song: 1 })
+        .populate("songs", { _id: 0, title: 1 })
         .exec();
       res.json(artists);
     } catch (err) {
@@ -21,8 +21,8 @@ class ArtistServices {
 
     try {
       const artist = await Artist.findById(id)
-        .populate("album")
-        .populate("songs")
+        .populate("albums", { songs: 0, artist: 0 })
+        .populate("songs", { artist: 0, album: 0, gender: 0 })
         .exec();
       res.json(artist);
     } catch (err) {
