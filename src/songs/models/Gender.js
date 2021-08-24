@@ -6,10 +6,12 @@ const genderSchema = new Schema(
       type: String,
       required: true,
     },
-    songs: {
-      type: Schema.Types.ObjectId,
-      ref: "Song",
-    },
+    songs: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Song",
+      },
+    ],
   },
   {
     versionKey: false,
