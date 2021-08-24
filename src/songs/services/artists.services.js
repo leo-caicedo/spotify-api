@@ -49,7 +49,9 @@ class ArtistServices {
     const { body: artist } = req;
 
     try {
-      const artistUpdated = await Artist.findByIdAndUpdate(id, artist);
+      const artistUpdated = await Artist.findByIdAndUpdate(id, artist, {
+        new: true,
+      });
       res.json(artistUpdated);
     } catch (err) {
       next(err);

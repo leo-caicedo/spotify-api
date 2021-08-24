@@ -7,8 +7,6 @@ const artistDto = [
     .withMessage("Artist name is required")
     .isLength({ max: 30 })
     .withMessage("The artist name must have a maximum of 30 characters"),
-  // verify
-  body("verify").isBoolean(),
 ];
 
 module.exports = artistDto;
