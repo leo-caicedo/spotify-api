@@ -5,10 +5,14 @@ class SongServices {
   // list songs
   async getSongs(req, res, next) {
     try {
-      const songs = await Song.find({}).populate("songs", {
-        _id: 0,
-        song: 1,
-      });
+      const songs = await Song.find({})
+        .populate("artist", {
+          _id: 0,
+          artist: 1,
+        })
+        .populate("album", { _id: 0, album: 1 })
+        .populate("gender", { _id: 0, gender: 1 })
+        .exec();
       res.json(songs);
     } catch (err) {
       next(err);
@@ -20,7 +24,11 @@ class SongServices {
     const { id } = req.params;
 
     try {
-      const song = await Song.findById(id).populate("songs");
+      const song = await Song.findById(id)
+        .populate("artist")
+        .populate("album")
+        .populate("gender")
+        .exec();
       res.json(song);
     } catch (err) {
       next(err);
