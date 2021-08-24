@@ -22,7 +22,7 @@ class ArtistServices {
     try {
       const artist = await Artist.findById(id)
         .populate("albums", { songs: 0, artist: 0 })
-        .populate("songs", { artist: 0, album: 0, gender: 0 })
+        .populate("songs", { artist: 0 })
         .exec();
       res.json(artist);
     } catch (err) {

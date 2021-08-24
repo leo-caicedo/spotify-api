@@ -8,7 +8,7 @@ class AlbumServices {
     try {
       const albums = await Album.find({})
         .populate("artist", { _id: 0, artist: 1 })
-        .populate("songs", { _id: 0, song: 1 })
+        .populate("songs", { _id: 0, title: 1 })
         .exec();
       res.json(albums);
     } catch (err) {

@@ -7,7 +7,7 @@ class GenderServices {
     try {
       const genders = await Gender.find({}).populate("songs", {
         _id: 0,
-        song: 1,
+        title: 1,
       });
       res.json(genders);
     } catch (err) {
@@ -20,7 +20,7 @@ class GenderServices {
     const { id } = req.params;
 
     try {
-      const gender = await Gender.findById(id).populate("songs");
+      const gender = await Gender.findById(id).populate("songs", { gender: 0 });
       res.json(gender);
     } catch (err) {
       next(err);

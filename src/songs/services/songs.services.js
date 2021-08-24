@@ -28,9 +28,9 @@ class SongServices {
 
     try {
       const song = await Song.findById(id)
-        .populate("artist")
-        .populate("album")
-        .populate("gender")
+        .populate("artist", { songs: 0, albums: 0 })
+        .populate("album", { songs: 0, artist: 0 })
+        .populate("gender", { songs: 0 })
         .exec();
       res.json(song);
     } catch (err) {
