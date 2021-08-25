@@ -25,7 +25,7 @@ class PlaylistServices {
 
     try {
       const playlist = await Playlist.findById(id)
-        .populate("user", { playlist: 0 })
+        .populate("user", { playlists: 0 })
         .populate("songs");
       res.json(playlist);
     } catch (err) {

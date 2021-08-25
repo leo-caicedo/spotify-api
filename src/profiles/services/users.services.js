@@ -7,7 +7,7 @@ const User = require("../models/User");
 class UsersServices {
   async getUsers(req, res, next) {
     try {
-      const users = await User.find({});
+      const users = await User.find({}).populate("playlists", { user: 0 });
       res.json(users);
     } catch (err) {
       next(err);
@@ -18,7 +18,7 @@ class UsersServices {
     const { id } = req.params;
 
     try {
-      const user = await User.findById(id);
+      const user = await User.findById(id).populate("playlists", { user: 0 });
       res.json(user);
     } catch (err) {
       next(err);
