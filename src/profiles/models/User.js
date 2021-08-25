@@ -14,7 +14,7 @@ const userSchema = new Schema(
     playlists: [
       {
         type: Schema.Types.ObjectId,
-        ref: "Song",
+        ref: "Playlist",
       },
     ],
   },
