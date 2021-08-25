@@ -35,7 +35,7 @@ class PlaylistServices {
 
   // create playlist
   async createPlaylist(req, res, next) {
-    const { playlist, user, songs } = req;
+    const { playlist, user, songs } = req.body;
 
     try {
       const userFound = await User.findById(user);

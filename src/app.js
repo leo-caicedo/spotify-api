@@ -8,6 +8,7 @@ const albumsRouter = require("./songs/routes/albums.routes");
 const gendersRoutes = require("./songs/routes/genders.routes");
 const songsRoutes = require("./songs/routes/songs.routes");
 const usersRoutes = require("./profiles/routes/users.routes");
+const playlistsRoutes = require("./profiles/routes/playlists.routes");
 
 const createApp = () => {
   const app = express();
@@ -23,6 +24,7 @@ const createApp = () => {
   app.use("/api/genders", gendersRoutes);
   app.use("/api/songs", songsRoutes);
   app.use("/api/users", usersRoutes);
+  app.use("/api/playlists", playlistsRoutes);
 
   return app;
 };
