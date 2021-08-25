@@ -20,12 +20,14 @@ const signupDto = [
     .exists({ checkFalsy: false })
     .withMessage("Password is required"),
   // confirm password
-  body("confirm_password").custom((value, { req }) => {
-    if (value !== req.body.password) {
-      throw new Error("Password confirmation does not match password");
-    }
-    return true;
-  }),
+  body("confirm_password")
+    .exists()
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("Password confirmation does not match password");
+      }
+      return true;
+    }),
 ];
 
 const signinDto = [
