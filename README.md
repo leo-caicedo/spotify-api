@@ -12,10 +12,15 @@ Clone of the Spotify API. It is connected to MongoDB Atlas and implements endpoi
 
 ## Use
 Steps to follow
-
-- git clone <repository>
-- run into the terminal npm i
+```
+git clone <repository>
+```
+```
+npm install
+```
+```
+npm run dev
+```
 - use .env-example file
-- run into the terminal npm run dev
 
 You can find an Insomnia json file to better understand the API.
