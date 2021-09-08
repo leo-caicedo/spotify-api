@@ -26,7 +26,7 @@ const createApp = () => {
   app.use("/api/users", usersRoutes);
   app.use("/api/playlists", playlistsRoutes);
   app.get("/", (req, res) => {
-    res.redirect("/api/songs");
+    res.redirect("/api/artists");
   });
 
   return app;
